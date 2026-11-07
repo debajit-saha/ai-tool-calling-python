@@ -6,7 +6,9 @@
     "description": "Provides order status and details for customer orders."
   },
   "servers": [
-    { "url": "https://functionapp100-dpfqgwepdhhsc2cb.eastus-01.azurewebsites.net/api" }
+    {
+      "url": "https://functionapp100-dpfqgwepdhhsc2cb.eastus-01.azurewebsites.net/api"
+    }
   ],
   "paths": {
     "/orders": {
@@ -59,12 +61,23 @@
       }
     }
   },
+  "security": [{ "functionKeyHeader": [] }],
   "components": {
+    "securitySchemes": {
+      "functionKeyHeader": {
+        "type": "apiKey",
+        "name": "x-functions-key",
+        "in": "header"
+      }
+    },
     "schemas": {
       "Order": {
         "type": "object",
         "properties": {
-          "order_id": { "type": "string", "description": "Unique order identifier." },
+          "order_id": {
+            "type": "string",
+            "description": "Unique order identifier."
+          },
           "customer": { "type": "string", "description": "Customer name." },
           "status": {
             "type": "string",

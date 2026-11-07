@@ -33,7 +33,7 @@ def list_orders(req: func.HttpRequest) -> func.HttpResponse:
     )
 
 
-@app.route(route="orders/{order_id}", methods=["GET"], auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="orders/{order_id}", methods=["GET"], auth_level=func.AuthLevel.FUNCTION)
 def get_order(req: func.HttpRequest) -> func.HttpResponse:
     order_id = req.route_params.get("order_id")
     order = ORDERS.get(order_id)
