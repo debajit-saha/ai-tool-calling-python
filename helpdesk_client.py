@@ -1,17 +1,18 @@
 
 import json
+import os
+
+from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
 from helpdesk_functions import run_local_function
 
-PROJECT_ENDPOINT = (
-    "https://foundry-dev-eus-902.services.ai.azure.com/"
-    "api/projects/proj-default"
-)
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
-AGENT_NAME = "IT-HelpDesk-Agent"
-AGENT_VERSION = "1"  # Change to the version created by your setup script.
+PROJECT_ENDPOINT = os.getenv("PROJECT_ENDPOINT")
+AGENT_NAME = os.getenv("AGENT_NAME")
+AGENT_VERSION = os.getenv("AGENT_VERSION", "1")  # Change to the version created by your setup script.
 MAX_TOOL_ROUNDS = 5
 
 project = AIProjectClient(

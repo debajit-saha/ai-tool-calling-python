@@ -1,10 +1,15 @@
+import os
+
+from dotenv import load_dotenv
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import PromptAgentDefinition, FunctionTool
 
-PROJECT_ENDPOINT = "https://foundry-dev-eus-902.services.ai.azure.com/api/projects/proj-default"
-AGENT_NAME = "IT-HelpDesk-Agent"
-DEPLOYMENT_NAME = "gpt-4.1-mini"
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+
+PROJECT_ENDPOINT = os.getenv("PROJECT_ENDPOINT")
+AGENT_NAME = os.getenv("AGENT_NAME")
+DEPLOYMENT_NAME = os.getenv("DEPLOYMENT_NAME")
 
 client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
